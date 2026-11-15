@@ -192,14 +192,14 @@ export default function PersonDetail({
                             strokeDasharray="3 4"
                           />
                           <rect
-                            x={(300 + x) / 2 - 22}
+                            x={(300 + x) / 2 - 22 + (Math.abs(Math.cos(angle)) < 0.1 ? 33 : 0)}
                             y={(118 + y) / 2 - 9}
                             width="44"
                             height="18"
                             fill="#fbfaf4"
                           />
                           <text
-                            x={(300 + x) / 2}
+                            x={(300 + x) / 2 + (Math.abs(Math.cos(angle)) < 0.1 ? 33 : 0)}
                             y={(118 + y) / 2 + 3}
                             textAnchor="middle"
                             fontSize="10"
