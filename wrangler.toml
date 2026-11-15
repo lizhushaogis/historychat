@@ -1,0 +1,12 @@
+name = "historychat-api"
+main = "worker/index.ts"
+compatibility_date = "2026-11-16"
+
+[vars]
+ALLOWED_ORIGIN = "https://lizhushaogis.github.io"
+MODEL = ""
+
+[[ratelimits]]
+name = "CHAT_RATE_LIMITER"
+namespace_id = "1459064512"
+simple = { limit = 12, period = 60 }
