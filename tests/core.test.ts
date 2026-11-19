@@ -167,6 +167,9 @@ test("proxy constructs persona server-side, fixes model and streams without expo
     assert.equal(response.status, 200);
     assert.equal(sent.model, "test-model");
     assert.match(JSON.stringify(sent.messages), /第一人称/);
+    assert.deepEqual((sent.messages as { role: string; content: string }[])[0], {
+      role: "system", content: systemPrompt(people.find(p => p.id === "su-shi")!, "person"),
+    });
     assert.equal(
       response.headers.get("Access-Control-Allow-Origin"),
       env.ALLOWED_ORIGIN,
