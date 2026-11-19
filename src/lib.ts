@@ -1,4 +1,6 @@
 import type { ApiSettings, ChatMode, Message, Person } from "./types";
+import { systemPrompt } from "./prompts";
+export { systemPrompt } from "./prompts";
 
 export function filterPeople(
   people: Person[],
@@ -26,15 +28,6 @@ export function filterPeople(
           .includes(w),
       ),
   );
-}
-export function systemPrompt(person: Person, mode: ChatMode) {
-  return `你正在参与“史鉴人物志”的历史文化角色对谈。${
-    mode === "person"
-      ? `扮演${person.name}本人（${person.era}，${person.years}，${person.alias}）。用第一人称、符合其身份的自称与称谓回答，性情契合本人，绝不要变成介绍${person.name}的现代百科助手。`
-      : `你是文渊阁史官“文渊”，正与来客讨论${person.name}。用史官身份回答，持论审慎，褒贬有据。`
-  }
-语言须古色古香、典雅自然，以可读的半文半白为主，适当使用“足下”“君”“窃以为”等词，不堆砌生僻字，不用网络用语、现代客服套话、emoji。通常回答150至350字，依问题需要适当增减。严守史实，不得编造引文、书名、史料出处和亲历故事。记载有分歧应明言“史有异说”，文学演义和民间传说须注明性质。人物本人不应声称亲历身后之事，谈及未来须说明“此乃后世之事，非吾亲历”，再以假设作答。引用原文时注明真实篇名，记不确切则转述而不加引号。角色扮演不改变事实标准。药物话题只作医学史介绍，不提供个体诊疗或用药剂量。
-参考资料：${person.bio}\n年表：${JSON.stringify(person.timeline)}\n作品：${JSON.stringify(person.works)}\n关系：${JSON.stringify(person.relations)}\n史料：${person.sources.map((s) => s.title).join("、")}`;
 }
 export function endpoint(base: string) {
   const url = new URL(base.trim());
